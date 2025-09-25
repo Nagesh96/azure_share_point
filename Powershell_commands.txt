@@ -1,0 +1,11 @@
+# Connect to the site interactively
+Connect-PnPOnline -Url https://ntrs.sharepoint.com/sites/DAETeam -Interactive
+
+# Grant your App ID Read access to this site
+Grant-PnPAzureADAppSitePermission `
+  -AppId <CLIENT_ID> `
+  -Site https://ntrs.sharepoint.com/sites/DAETeam `
+  -Permissions Read
+
+# (Optional) Verify the grant
+Get-PnPAzureADAppSitePermission -Site https://ntrs.sharepoint.com/sites/DAETeam
