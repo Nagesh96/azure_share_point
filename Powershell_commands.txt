@@ -9,3 +9,26 @@ Grant-PnPAzureADAppSitePermission `
 
 # (Optional) Verify the grant
 Get-PnPAzureADAppSitePermission -Site https://ntrs.sharepoint.com/sites/DAETeam
+
+------------
+# Environment wise configuration 
+
+# Connect once
+Connect-PnPOnline -Url https://ntrs.sharepoint.com/sites/DAETeam -Interactive
+
+# Grant Dev app (already done)
+Grant-PnPAzureADAppSitePermission -AppId <DEV_CLIENT_ID>  -Site https://ntrs.sharepoint.com/sites/DAETeam -Permissions Read
+
+# Grant Prod app (new)
+Grant-PnPAzureADAppSitePermission -AppId <PROD_CLIENT_ID> -Site https://ntrs.sharepoint.com/sites/DAETeam -Permissions Read
+
+# Verify both grants are present
+Get-PnPAzureADAppSitePermission -Site https://ntrs.sharepoint.com/sites/DAETeam
+
+-----------
+
+# To revoke access 
+
+Revoke-PnPAzureADAppSitePermission `
+  -AppId <CLIENT_ID> `
+  -Site https://ntrs.sharepoint.com/sites/DAETeam
