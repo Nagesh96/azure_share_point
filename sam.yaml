@@ -1,0 +1,16 @@
+containers:
+          - name: dae-python-etl
+            # ... your existing env keys (DB_SERVER, usernames, etc.) ...
+            env:
+              # (keep your existing env entries here)
+              - name: GRAPH_CERT_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: dae-graph-cert
+                    key: GRAPH_CERT_PASSWORD
+              - name: GRAPH_CERT_PATH
+                value: "/app/certs/graphclient.pfx"
+            volumeMounts:
+              - name: graph-cert-volume
+                mountPath: /app/certs
+                readOnly: true
